@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="shortcut icon" href="./favicon.ico?v=1" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico?v=1" type="image/x-icon">
+    <title>Firebase Demo App</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="header">
+        <img id="chat-logo" src="./images/firebase.png" alt="Chat Application">
+        Firebase Chat Application Demo
+        <div id="user">
+            <img id="user-icon" src="./images/user-icon.png" alt="User">
+            <div>Welcome, <span id="username">Guest</span> !</div>
+            <button>Sign Out</button>
+        </div>
+    </div>
+    <div id="chat-box">This is the chat box</div>
+    <div id="control-box">
+        <img id="image-icon" src="./images/image-icon.png" alt="Upload Photo">
+        <input type="text" id="txt-message" placeholder="Enter chat message :)">
+        <button id="send-button">
+            <img src="./images/send-icon.png" alt="">
+            Send
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.8/firebase.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

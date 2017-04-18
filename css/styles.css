@@ -45,6 +45,16 @@ html, body {
 
 #user { float: right; vertical-align: bottom; }
 
+#user-backup {
+  text-align: center;
+  background: #f5f5f5;
+  padding: 8px 5px;
+}
+
+#user-backup * {
+  display: inline-block;
+}
+
 #user div {
    display: inline-block;
    vertical-align: middle;
@@ -78,7 +88,7 @@ span#username {
    right: 0;
    left: 0;
    padding: 10px;
-   text-align: right;
+   text-align: center;
 }
 
 #txt-message {
@@ -117,4 +127,31 @@ button:hover {
 #send-button img {
    width: 18px;
    vertical-align: top;
+}
+
+#new-upload {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 515px) {
+    #user { display: none; }
+    #user-backup { display: block; }
+}
+
+@media only screen and (min-width: 515px) {
+    #user { display: block; }
+    #user-backup { display: none; }
+}
+
+@media only screen and (max-width: 355px) {
+    #txt-message { width: 66%; }
+    #image-icon { display: none; }
+    #new-upload { display: block; }
+}
+
+@media only screen and (min-width: 355px) {
+  #new-upload { display: none; }
 }

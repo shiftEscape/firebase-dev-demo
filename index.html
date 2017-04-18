@@ -15,16 +15,20 @@
         Firebase Chat Application Demo
         <div id="user">
             <img id="user-icon" src="./images/user-icon.png" alt="User">
-            <div>Welcome, <span id="username">Guest</span> !</div>
-            <button>Sign Out</button>
+            <div>Welcome, <span class="username-elem"></span> !</div>
+            <button id="google-login">Sign in with Google</button>
+            <button id="sign-out">Sign Out</button>
         </div>
     </div>
     <div id="user-backup">
         <img id="user-icon" src="./images/user-icon.png" alt="User">
-        <div>Welcome, <span id="username">Guest</span> !</div>
-        <button>Sign Out</button>
+        <div>Welcome, <span class="username-elem"></span> !</div>
+        <button id="google-login">Sign in with Google</button>
+        <button id="sign-out">Sign Out</button>
     </div>
-    <div id="chat-box">This is the chat box</div>
+    <div id="chat-box">
+        <ul id="messages"></ul>
+    </div>
     <div id="control-box">
         <img id="image-icon" src="./images/image-icon.png" alt="Upload Photo">
         <input type="text" id="txt-message" placeholder="Enter chat message :)">
@@ -37,7 +41,7 @@
 
     <!-- Scripts -->
     <script src="https://www.gstatic.com/firebasejs/3.7.8/firebase.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="./js/babel.min.js"></script>
     <script src="js/scripts.js"></script>
 </body>
 </html>

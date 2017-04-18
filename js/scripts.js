@@ -5,8 +5,13 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const textMessage = document.getElementById('txt-message');
-  const sendButton = document.getElementById('send-button');
+  var username = 'Guest',
+      textMessage = document.getElementById('txt-message'),
+      sendButton = document.getElementById('send-button'),
+      usernameElm = document.getElementsByClassName('username-elem'),
+      googleLogin = document.getElementById('google-login'),
+      signOut = document.getElementById('sign-out'),
+      messagesList = document.getElementById('messages');
 
   // Initialize Firebase
   var config = {
@@ -19,10 +24,34 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   firebase.initializeApp(config);
+  console.info('Firebase Initialized!')
 
-  let addMessage = (message) => {
+  // Create elements and append new message to chat box
+  let addMessage = (chat) => {
+    let li = document.createElement('li');
+    let nameElm = document.createElement('h4');
+    nameElm.innerText = chat.name;
+    li.appendChild(nameElm);
+    li.className = 'highlight';
+
+    let messageElm = document.createElement('div');
+    messageElm.innerText = chat.message;
+    li.appendChild(messageElm);
+
+    messagesList.appendChild(li);
+    li.scrollIntoView(false);
+
     textMessage.value = '';
-    alert(message);
+  };
+
+  // Set Username Method
+  let setUsername = (newUsername) => {
+    if (newUsername == null) { newUsername = 'Guest'; }
+    username = newUsername;
+    let isLoggedIn = username != 'Guest';
+    usernameElm[0].innerText = usernameElm[1].innerText = newUsername;
+    signOut.style.display = isLoggedIn ? '' : 'none';
+    googleLogin.style.display = isLoggedIn ? 'none' : '';
   }
 
   // Keypress Event for message input text
@@ -37,9 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
   sendButton.addEventListener('click', e => {
     let message = textMessage.value;
     if(message === '') return false;
-    addMessage(message);
+    addMessage({name: 'Guest', message: message});
   });
   
+  setUsername('Guest');
   // Add reference to database child
   // var dbRef = firebase.database().ref().child('chat');
   // dbRef.on('value', snap => console.log(snap.val()));

@@ -1,2 +1,2 @@
-# firebase-dev-demo
-Firebase Demofor Dev Meetup
+# Firebase-dev-demo
+Chat application template for Firebase demo

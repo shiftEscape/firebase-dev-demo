@@ -95,14 +95,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //===========================================================
 
+  // Initialize Firebase
+  var config = {
+    apiKey: "< get this from your firebase console >",
+    authDomain: "< get this from your firebase console >",
+    databaseURL: "< get this from your firebase console >",
+    projectId: "< get this from your firebase console >",
+    storageBucket: "< get this from your firebase console >",
+    messagingSenderId: "< get this from your firebase console >"
+  };
+
+  var app = firebase.initializeApp(config),
+            database = app.database(),
+            auth = app.auth(),
+            storage = app.storage();
+
+  // Add reference to database child
+  var dbRef = database.ref().child('chat');
+
   // Click event to add message to chat box
   sendButton.addEventListener('click', e => {
     var message = textMessage.value;
     if(message === '') return false;
     var chat = {name: username, message: message};
+    // Push the chat message to the database
+    dbRef.push().set(chat);
+    // addMessage(chat);
+  });
+
+  // Listen for when child nodes get added to the collection
+  dbRef.on('child_added', function(snapshot) {
+    // Get the chat message from the snapshot and add it to the UI
+    var chat = snapshot.val();
     addMessage(chat);
   });
 
-  setUsername('Guest');
+  // Show a popup when the user asks to sign in with Google
+  googleLogin.addEventListener('click', e => {
+    auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  });
+
+  googleLoginBack.addEventListener('click', e => {
+    auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  });
+
+  // Allow the user to sign out
+  signOut.addEventListener('click', function(e) {
+    auth.signOut();
+  });
+
+  signOutBack.addEventListener('click', function(e) {
+    auth.signOut();
+  });
+
+  // When the user signs in or out, update the username we keep for them
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      setUsername(user.displayName);
+    } else {
+      // User signed out, set a default username
+      setUsername('Guest');
+    }
+  });
+
+  // Handle file select
+  var handleFileSelect = (e) => {
+    setLoading(true);
+    var file = e.target.files[0];
+    // Get a reference to the location where we'll store our photos
+    var storageRef = storage.ref().child('chat_photos');
+  
+    // Get a reference to store file at photos/<FILENAME>.jpg
+    var photoRef = storageRef.child(file.name);
+    var uploadTask = photoRef.put(file);
+    uploadTask.on('state_changed', null, null, () => {
+      setLoading(false);
+      var downloadUrl = uploadTask.snapshot.downloadURL;
+      textMessage.value = downloadUrl;
+    });
+  };
+
+  fileElem.addEventListener('change', handleFileSelect, false);
 
 });

@@ -65,11 +65,7 @@ html, body {
    font-size: 14px;
 }
 
-span#username {
-   font-weight: 500;
-}
-
-#user-icon {
+.user-icon {
    width: 30px;
    vertical-align: middle;
 }
@@ -77,6 +73,7 @@ span#username {
 #image-icon {
    width: 39px;
    vertical-align: top;
+   cursor: pointer;
 }
 
 #chat-box {
@@ -161,13 +158,27 @@ ul#messages li > div {
   overflow: hidden;
 }
 
+ul#messages li > img {
+  width: 50%;
+}
+
+.username-elem {
+  padding: 8px;
+  vertical-align: middle;
+  background: #0082c1;
+  border-radius: 2px;
+  border: 1px solid #0082c1;
+  color: #FFF;
+  font-size: 14px;
+}
+
+.sign-out, .sign-out:hover {
+  background: #EF5350;
+}
+
 .message-not-owned {
   float: left;
   text-align: left;
-}
-
-#sign-out {
-  display: none;
 }
 
 /* Media Queries */

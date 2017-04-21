@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="./favicon.ico?v=1" type="image/x-icon">
     <link rel="icon" href="./favicon.ico?v=1" type="image/x-icon">
-    <title>Firebase Demo App</title>
+    <title>Firebase Chat Demo App</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -14,29 +14,28 @@
         <img id="chat-logo" src="./images/firebase.png" alt="Chat Application">
         Firebase Chat Application Demo
         <div id="user">
-            <img id="user-icon" src="./images/user-icon.png" alt="User">
-            <div>Welcome, <span class="username-elem"></span> !</div>
-            <button id="google-login">Sign in with Google</button>
-            <button id="sign-out">Sign Out</button>
+            <div class="username-elem" style="display: none"></div>
+            <button id="google-login" style="display: none">Sign in with Google</button>
+            <button class="sign-out" id="sign-out" style="display: none">Sign Out</button>
         </div>
     </div>
     <div id="user-backup">
-        <img id="user-icon" src="./images/user-icon.png" alt="User">
-        <div>Welcome, <span class="username-elem"></span> !</div>
-        <button id="google-login">Sign in with Google</button>
-        <button id="sign-out">Sign Out</button>
+        <div class="username-elem" style="display: none"></div>
+        <button id="google-login-back" style="display: none">Sign in with Google</button>
+        <button class="sign-out" id="sign-out-back" style="display: none">Sign Out</button>
     </div>
     <div id="chat-box">
         <ul id="messages"></ul>
     </div>
     <div id="control-box">
-        <img id="image-icon" src="./images/image-icon.png" alt="Upload Photo">
+        <img id="image-icon" title="Choose photo to upload" src="./images/image-icon.png" alt="Upload Photo">
         <input type="text" id="txt-message" placeholder="Enter chat message :)">
         <button id="send-button">
             <img src="./images/send-icon.png" alt="">
             Send
         </button>
         <button id="new-upload">Upload Photo</button>
+        <input type="file" id="file" name="file" style="display:none"/>
     </div>
 
     <!-- Scripts -->
